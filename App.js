@@ -8,30 +8,45 @@ export default class App extends Component {
 
     this.state = {
       chartConfig2d: {
-        type: "column2D",
+        type: "angulargauge",
         width: "100%",
         height: "400",
         dataFormat: "json",
         dataSource: {
-          chart: {
-            caption: "Countries With Most Oil Reserves [2017-18]",
-            subCaption: "In MMbbl = One Million barrels",
-            xAxisName: "Country",
-            yAxisName: "Reserves (MMbbl)",
-            numberSuffix: "K",
-            theme: "fusion",
-            exportEnabled: 1 // to enable the export chart functionality
+          "chart": {
+            "caption": "Customer Satisfaction Score",
+            "subcaption": "Last week",
+            "lowerLimit": "0",
+            "upperLimit": "100",
+            "lowerLimitDisplay": "Bad",
+            "upperLimitDisplay": "Good",
+            "showValue": "1",
+            "valueBelowPivot": "1",
+            "theme": "fusion"
           },
-          data: [
-            { label: "Venezuela", value: "250" },
-            { label: "Saudi", value: "260" },
-            { label: "Canada", value: "180" },
-            { label: "Iran", value: "140" },
-            { label: "Russia", value: "115" },
-            { label: "UAE", value: "100" },
-            { label: "US", value: "30" },
-            { label: "China", value: "30" },
-          ]
+          "colorRange": {
+            "color": [{
+                "minValue": "0",
+                "maxValue": "50",
+                "code": "#e44a00"
+              },
+              {
+                "minValue": "50",
+                "maxValue": "75",
+                "code": "#f8bd19"
+              },
+              {
+                "minValue": "75",
+                "maxValue": "100",
+                "code": "#6baa01"
+              }
+            ]
+          },
+          "dials": {
+            "dial": [{
+              "value": "67"
+            }]
+          }
         }
       },
 
@@ -41,6 +56,7 @@ export default class App extends Component {
   }
 
   render() {
+    const modules =['widgets'];
     return (
       <ScrollView>
         <View>
@@ -49,10 +65,11 @@ export default class App extends Component {
           <View style={styles.container}>
             <View style={styles.chartContainer}>
               <Text style={styles.heading}>
-                Plain Chart
+                Angular Gauge
               </Text>
               <ReactNativeFusionCharts
                 chartConfig={this.state.chartConfig2d}
+                modules={modules}
               />
             </View>
           </View>
